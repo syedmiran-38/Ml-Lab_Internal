@@ -1,0 +1,63 @@
+﻿CREATE DATABASE db1;
+CREATE DATABASE db2;
+
+
+USE db1;
+CREATE TABLE emp (
+  empno INT PRIMARY KEY,
+  ename VARCHAR(50),
+  job VARCHAR(50),
+  sal DECIMAL(10, 2)
+);
+
+
+USE db2;
+CREATE TABLE emp (
+  empno INT PRIMARY KEY,
+  ename VARCHAR(50),
+  job VARCHAR(50),
+  sal DECIMAL(10, 2)
+);
+
+
+USE db1;
+INSERT INTO emp (empno, ename, job, sal) VALUES
+(101, 'Md. Ashique Hussain', 'Manager', 60000.00),
+(102, 'Fatima Begum', 'Clerk', 25000.00),
+(103, 'Aamir Khan', 'Clerk', 23000.00),
+(104, 'Zara Sheikh', 'Salesman', 27000.00),
+(105, 'Rahul Sharma', 'Clerk', 22000.00);
+
+
+USE db2;
+INSERT INTO emp (empno, ename, job, sal) VALUES
+(106, 'Sara Ali', 'Analyst', 45000.00),
+(107, 'Imran Sheikh', 'Clerk', 24000.00),
+(108, 'Anisha Bano', 'Salesman', 29000.00);
+
+
+USE db1;
+CREATE VIEW ClerkView1 AS
+SELECT empno AS empnumber, ename, job, sal
+FROM emp
+WHERE job = 'Clerk';
+
+
+USE db2;
+CREATE VIEW ClerkView2 AS
+SELECT empno AS empnumber, ename, job, sal
+FROM emp
+WHERE job = 'Clerk';
+
+
+USE db1;
+SELECT * FROM ClerkView1;
+
+
+USE db2;
+SELECT * FROM ClerkView2;
+
+
+SELECT * FROM db1.ClerkView1
+UNION ALL
+SELECT * FROM db2.ClerkView2;
