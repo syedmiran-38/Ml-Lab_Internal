@@ -1,0 +1,32 @@
+﻿-- 1) Add a column “SPOUSE” to the emp table
+ALTER TABLE emp
+ADD COLUMN SPOUSE VARCHAR(100);
+
+
+-- 2) Modify the job of employees to “programmer” whose job is “trainee”
+UPDATE emp
+SET job = 'programmer'
+WHERE job = 'trainee';
+
+
+-- 3) Delete record whose location is “Baroda” from dept table
+DELETE FROM dept
+WHERE location = 'Baroda';
+
+
+-- 4) Drop a table “stud_master”
+DROP TABLE stud_master;
+
+
+-- 5) Create a table “ManagerHist” from emp whose job is “Manager”
+CREATE TABLE ManagerHist AS
+SELECT *
+FROM emp
+WHERE job = 'Manager';
+
+
+-- 6) Copy all the information of department 20 into the “ManagerHist” table
+INSERT INTO ManagerHist
+SELECT *
+FROM emp
+WHERE deptno = 20;
